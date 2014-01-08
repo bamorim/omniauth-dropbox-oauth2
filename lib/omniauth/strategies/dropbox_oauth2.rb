@@ -27,6 +27,14 @@ module OmniAuth
       def raw_info
         @raw_info ||= MultiJson.decode(access_token.get('/1/account/info').body)
       end
+
+      def callback_url
+        if @authorization_code_from_signed_request
+          ''
+        else
+          options[:callback_url] || super
+        end
+      end
     end
   end
 end
