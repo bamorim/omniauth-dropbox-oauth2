@@ -1,0 +1,11 @@
+*.gem
+.bundle
+.rspec
+/Gemfile.lock
+pkg/*
+.powenv
+.powrc
+.ruby-version
+tmp
+bin
+example/app.log
