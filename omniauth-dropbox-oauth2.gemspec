@@ -1,5 +1,6 @@
 # encoding: utf-8
-require File.expand_path(File.join('..', 'lib', 'omniauth', 'dropbox_oauth2', 'version'), __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
+require 'omniauth-dropbox-oauth2/version'
 
 Gem::Specification.new do |gem|
   gem.name        = 'omniauth-dropbox-oauth2'
