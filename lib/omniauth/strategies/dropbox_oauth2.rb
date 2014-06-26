@@ -4,17 +4,17 @@ module OmniAuth
   module Strategies
     class DropboxOauth2 < OmniAuth::Strategies::OAuth2
       option :name, "dropbox_oauth2"
+
       option :client_options, {
         :site               => 'https://api.dropbox.com',
         :authorize_url      => 'https://www.dropbox.com/1/oauth2/authorize',
-        :token_url          => 'https://api.dropbox.com/1/oauth2/token'
+        :token_url          => '/1/oauth2/token'
       }
 
       uid { raw_info['uid'] }
 
       info do
         {
-          'uid'   => raw_info['uid'],
           'name'  => raw_info['display_name'],
           'email' => raw_info['email']
         }
