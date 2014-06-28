@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "omniauth-oauth2"
 
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec', '~> 2.7'
 
   gem.executables = `git ls-files -- bin/*`.split("\n").map{|f| File.basename(f)}
   gem.files       = `git ls-files`.split("\n")
