@@ -1,5 +1,6 @@
 # encoding: utf-8
-require File.expand_path(File.join('..', 'lib', 'omniauth', 'dropbox_oauth2', 'version'), __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
+require 'omniauth-dropbox-oauth2/version'
 
 Gem::Specification.new do |gem|
   gem.name        = 'omniauth-dropbox-oauth2'
@@ -14,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "omniauth-oauth2"
 
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec', '~> 2.7'
 
   gem.executables = `git ls-files -- bin/*`.split("\n").map{|f| File.basename(f)}
   gem.files       = `git ls-files`.split("\n")

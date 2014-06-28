@@ -1,1 +1,2 @@
-require File.join('omniauth', 'dropbox_oauth2')
+require 'omniauth-dropbox-oauth2/version'
+require 'omniauth/strategies/dropbox_oauth2'
