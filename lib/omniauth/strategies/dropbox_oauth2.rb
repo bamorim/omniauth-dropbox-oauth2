@@ -28,15 +28,11 @@ module OmniAuth
         @raw_info ||= MultiJson.decode(access_token.get('/1/account/info').body)
       end
 
-      def callback_url_without_query_string
-        full_host + script_name + callback_path
-      end
-
       def callback_url
         if @authorization_code_from_signed_request
           ''
         else
-          options[:callback_url] || callback_url_without_query_string
+          options[:callback_url] || super
         end
       end
     end
