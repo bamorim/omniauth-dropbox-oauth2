@@ -25,7 +25,7 @@ end
 
 You need to add your key and secret.
 
-Also remember to add the full callback path to your Dropbox App Console, for example: https://example.com/auth/dropbox-oauth2/callback
+Also remember to add the full callback path to your Dropbox App Console, for example: https://example.com/auth/dropbox_oauth2/callback
 
 For more information check the [OmniAuth wiki](https://github.com/intridea/omniauth/wiki).
 
