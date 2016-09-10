@@ -25,7 +25,19 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.decode(access_token.get('/2/users/get_current_account').body)
+        conn = Faraday.new(:url => 'https://api.dropbox.com') do |faraday|
+          faraday.request  :url_encoded             # form-encode POST params
+          faraday.response :logger                  # log requests to STDOUT
+          faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+        end
+        response = conn.post do |req|
+          req.url '/2/users/get_current_account'
+          req.headers['Content-Type'] = 'application/json'
+          req.headers['Authorization'] = "Bearer #{access_token.token}"
+          req.body = "null"
+        end
+        @raw_info ||= MultiJson.decode(response.body)
+        # @raw_info ||= MultiJson.decode(access_token.get('/2/users/get_current_account').body)
       end
 
       def callback_url
