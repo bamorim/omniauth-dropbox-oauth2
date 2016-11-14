@@ -10,7 +10,7 @@ module OmniAuth
         :token_url          => 'https://api.dropbox.com/oauth2/token'
       }
 
-      uid { raw_info['uid'] }
+      uid { raw_info['account_id'] }
 
       info do
         {
