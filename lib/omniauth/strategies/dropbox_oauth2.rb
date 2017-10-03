@@ -3,14 +3,14 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class DropboxOauth2 < OmniAuth::Strategies::OAuth2
-      option :name, "dropbox_oauth2"
+      option :name, 'dropbox_oauth2'
       option :client_options, {
         :site               => 'https://api.dropbox.com',
         :authorize_url      => 'https://www.dropbox.com/oauth2/authorize',
         :token_url          => 'https://api.dropbox.com/oauth2/token'
       }
 
-      uid { raw_info['uid'] }
+      uid { raw_info['account_id'] }
 
       info do
         {
@@ -34,10 +34,9 @@ module OmniAuth
           req.url '/2/users/get_current_account'
           req.headers['Content-Type'] = 'application/json'
           req.headers['Authorization'] = "Bearer #{access_token.token}"
-          req.body = "null"
+          req.body = 'null'
         end
         @raw_info ||= MultiJson.decode(response.body)
-        # @raw_info ||= MultiJson.decode(access_token.get('/2/users/get_current_account').body)
       end
 
       def callback_url
