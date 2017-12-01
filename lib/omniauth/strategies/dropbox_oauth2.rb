@@ -25,6 +25,8 @@ module OmniAuth
       end
 
       def raw_info
+        return @raw_info if defined?(@raw_info)
+
         url = options[:client_options][:site]
         conn = Faraday.new(url: url) do |faraday|
           faraday.request  :url_encoded             # form-encode POST params
@@ -37,8 +39,8 @@ module OmniAuth
           req.headers['Authorization'] = "Bearer #{access_token.token}"
           req.body = "null"
         end
-        @raw_info ||= MultiJson.decode(response.body)
-        # @raw_info ||= MultiJson.decode(access_token.get('/2/users/get_current_account').body)
+
+        @raw_info = MultiJson.decode(response.body)
       end
 
       def callback_url
